@@ -1,10 +1,16 @@
 module WebData exposing (main)
 
--- rewrite model to Webdata String
-
-import Html exposing (Html, button, div, program, text)
+import Html
+    exposing
+        ( Html
+        , button
+        , div
+        , program
+        , text
+        )
 import Html.Events exposing (onClick)
-import Http exposing (Error, getString)
+import Http exposing (Error, getString, send)
+import Json.Decode as Decode exposing (Decoder)
 import RemoteData exposing (WebData)
 
 
@@ -19,7 +25,7 @@ main =
 
 
 type alias Model =
-    WebData String
+    WebData (Result String String)
 
 
 init : ( Model, Cmd Msg )
@@ -31,7 +37,12 @@ init =
 
 type Msg
     = Request
-    | Response (Result Error String)
+    | Response (WebData String)
+
+
+decode : Decoder String
+decode =
+    Decode.field "text" Decode.string
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -39,11 +50,13 @@ update msg model =
     case msg of
         Request ->
             ( model
-            , Cmd.none
+            , RemoteData.sendRequest (getString "http://localhost:8000/api/test.json")
+                |> Cmd.map Response
             )
 
         Response result ->
-            ( model
+            ( result
+                |> RemoteData.map (Decode.decodeString decode)
             , Cmd.none
             )
 

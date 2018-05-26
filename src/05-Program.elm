@@ -1,13 +1,6 @@
 module Program exposing (main)
 
-import Html
-    exposing
-        ( Html
-        , button
-        , div
-        , program
-        , text
-        )
+import Html exposing (Html, button, div, program, text)
 import Html.Events exposing (onClick)
 
 

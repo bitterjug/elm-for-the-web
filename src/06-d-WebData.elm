@@ -1,10 +1,17 @@
 module WebData exposing (main)
 
--- rewrite model to Webdata String
+-- use sendRequest to convert to webdata
 
-import Html exposing (Html, button, div, program, text)
+import Html
+    exposing
+        ( Html
+        , button
+        , div
+        , program
+        , text
+        )
 import Html.Events exposing (onClick)
-import Http exposing (Error, getString)
+import Http exposing (Error, getString, send)
 import RemoteData exposing (WebData)
 
 
@@ -31,7 +38,7 @@ init =
 
 type Msg
     = Request
-    | Response (Result Error String)
+    | Response (WebData String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -39,11 +46,12 @@ update msg model =
     case msg of
         Request ->
             ( model
-            , Cmd.none
+            , RemoteData.sendRequest (getString "http://localhost:8000/api/test.json")
+                |> Cmd.map Response
             )
 
         Response result ->
-            ( model
+            ( result
             , Cmd.none
             )
 

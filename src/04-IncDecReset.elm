@@ -1,13 +1,6 @@
 module IncDecReset exposing (main)
 
-import Html
-    exposing
-        ( Html
-        , beginnerProgram
-        , button
-        , div
-        , text
-        )
+import Html exposing (Html, beginnerProgram, button, div, text)
 import Html.Events exposing (onClick)
 
 
@@ -30,10 +23,10 @@ type Msg
 
 
 update : Msg -> Model -> Model
-update msg n =
+update msg model =
     case msg of
-        Add m ->
-            m + n
+        Add n ->
+            model + n
 
         Reset ->
             0

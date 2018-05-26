@@ -1,10 +1,10 @@
 module WebData exposing (main)
 
--- rewrite model to Webdata String
+-- send the request, case on the result
 
 import Html exposing (Html, button, div, program, text)
 import Html.Events exposing (onClick)
-import Http exposing (Error, getString)
+import Http exposing (Error, getString, send)
 import RemoteData exposing (WebData)
 
 
@@ -38,12 +38,17 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Request ->
-            ( model
+            ( RemoteData.Loading
+            , send Response (getString "http://localhost:8000/api/test.json")
+            )
+
+        Response (Ok value) ->
+            ( RemoteData.Success value
             , Cmd.none
             )
 
-        Response result ->
-            ( model
+        Response (Err error) ->
+            ( RemoteData.Failure error
             , Cmd.none
             )
 

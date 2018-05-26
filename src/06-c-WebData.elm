@@ -1,5 +1,7 @@
 module WebData exposing (main)
 
+-- send the request, case on the result
+
 import Html
     exposing
         ( Html
@@ -8,6 +10,7 @@ import Html
         , program
         , text
         )
+import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
 import Http exposing (Error, getString, send)
 import RemoteData exposing (WebData)
@@ -43,8 +46,8 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Request ->
-            ( model
-            , send Response (getString "http://localhost:8000")
+            ( RemoteData.Loading
+            , send Response (getString "http://localhost:8000/api/test.json")
             )
 
         Response (Ok value) ->
@@ -62,5 +65,24 @@ view : Model -> Html Msg
 view model =
     div []
         [ button [ onClick Request ] [ text "Request" ]
-        , text (toString model)
+        , viewModel model
         ]
+
+
+viewModel : Model -> Html Msg
+viewModel webdataStrig =
+    case webdataStrig of
+        RemoteData.NotAsked ->
+            div [] []
+
+        RemoteData.Loading ->
+            div [ style [ ( "background", "yellow" ) ] ]
+                [ text "Loading ..." ]
+
+        RemoteData.Failure err ->
+            div [ style [ ( "color", "red" ) ] ]
+                [ text (toString err) ]
+
+        RemoteData.Success value ->
+            div [ style [ ( "color", "grey" ) ] ]
+                [ text value ]

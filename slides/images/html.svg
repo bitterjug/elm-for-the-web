@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="209.80656mm"
-   height="96.217026mm"
-   viewBox="0 0 209.80656 96.217026"
+   width="210.87291mm"
+   height="59.002083mm"
+   viewBox="0 0 210.87291 59.002083"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="237.84606"
-     inkscape:cy="76.971566"
+     inkscape:zoom="1"
+     inkscape:cx="235.45018"
+     inkscape:cy="2.4398993"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,21 +56,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-1.0690781,-8.8834496)">
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3713"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#c84683;fill-opacity:1;stroke:none"
-       transform="matrix(0.21977287,0,0,0.21977287,142.897,8.1799005)"><flowRegion
-         id="flowRegion3715"
-         style="fill:#c84683;fill-opacity:1"><rect
-           id="rect3717"
-           width="915.19824"
-           height="124.24879"
-           x="110.10663"
-           y="263.89001"
-           style="fill:#c84683;fill-opacity:1" /></flowRegion><flowPara
-         id="flowPara3773">Search</flowPara></flowRoot>    <path
+     transform="translate(-0.01074478,-25.725477)">
+    <path
        d="m -75.896117,140.36311 h 20.913155 v -19.17296 h -20.913155 z"
        style="fill:#512142;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.41592038"
        id="path12"
@@ -130,20 +117,7 @@
        style="fill:#ffb500;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.41592038"
        id="path34"
        inkscape:connector-curvature="0" />
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3713-3"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#fc1056;fill-opacity:1;stroke:none"
-       transform="matrix(0.21977287,0,0,0.21977287,-17.266846,7.8322648)"><flowRegion
-         id="flowRegion3715-6"
-         style="fill:#fc1056;fill-opacity:1"><rect
-           id="rect3717-7"
-           width="915.19824"
-           height="124.24879"
-           x="110.10663"
-           y="263.89001"
-           style="fill:#fc1056;fill-opacity:1" /></flowRegion><flowPara
-         id="flowPara3719-5">&lt;a class=&quot;speical&quot; href=&quot;http://google.com&quot;&gt;      &lt;/a&gt;</flowPara></flowRoot>    <text
+    <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="60.93745"
@@ -166,7 +140,7 @@
          y="58.145065"
          style="fill:#666666;stroke-width:0.26458332"> Html</tspan></text>
     <rect
-       style="fill:#fc0e1a;fill-opacity:0.20855617;stroke-width:0.34524855"
+       style="fill:#fd7421;fill-opacity:0.19607843;stroke-width:0.34524855"
        id="rect3876"
        width="146.99825"
        height="33.675961"
@@ -190,5 +164,38 @@
          x="83.928368"
          y="42.437054"
          style="fill:#666666;stroke-width:0.26458332"> Html</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.59175682px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#fd7421;fill-opacity:1;stroke:none;stroke-width:0.21479392"
+       x="7.2501345"
+       y="72.837563"
+       id="text4735"><tspan
+         sodipodi:role="line"
+         id="tspan4733"
+         x="7.2501345"
+         y="72.837563"
+         style="fill:#fd7421;fill-opacity:1;stroke-width:0.21479392">&lt;a class=&quot;special&quot; href=&quot;http://google.com/&quot;&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.59175682px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#fd7421;fill-opacity:1;stroke:none;stroke-width:0.21479392"
+       x="194.45854"
+       y="72.837563"
+       id="text4735-2"><tspan
+         sodipodi:role="line"
+         id="tspan4733-6"
+         x="194.45854"
+         y="72.837563"
+         style="fill:#fd7421;fill-opacity:1;stroke-width:0.21479392">&lt;/a&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.59175682px;line-height:1.25;font-family:Dijkstra;-inkscape-font-specification:Dijkstra;letter-spacing:0px;word-spacing:0px;fill:#82366a;fill-opacity:1;stroke:none;stroke-width:0.21479392"
+       x="167.65993"
+       y="73.019272"
+       id="text4735-2-1"><tspan
+         sodipodi:role="line"
+         id="tspan4733-6-8"
+         x="167.65993"
+         y="73.019272"
+         style="fill:#82366a;fill-opacity:1;stroke-width:0.21479392">Search</tspan></text>
   </g>
 </svg>

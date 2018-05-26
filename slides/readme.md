@@ -1,41 +1,76 @@
+<!-- $theme: default -->
+<x-small>
+
 # Elm for the web
 
+Mark Skipper
 
-## 1. Hello World
+---------------------------
 
-It's for the web: We need a way to affect the DOM:
-
-Html gives us a type for DOM nodes:
+# A type for DOM nodes:
+elm-lang/html
 
 ```elm
 type alias Html msg =
     Node msg
 ```
 
-And functions to create them:
+-------------------------------------------------------
 
+# Functions to create DOM nodes:
+
+![](images/html.svg)
+elm-lang/html
 ```elm
 div : List (Attribute msg) -> List (Html msg) -> Html msg
 
 text : String -> Html msg
 ```
 
+------------------------------------------------------
+# 1. Hello World
 
-## 2. Render a buton
+```elm 
+main : Html msg
+main =
+    text "hello world"
+```
+------------------------------------------------------
 
-- From Hello World to two buttons
-- Use unit for msg
-
+# Buttons
+elm-lang/html
 ```elm
 button : List (Attribute msg) -> List (Html msg) -> Html msg
 ```
+------------------------------------------------------
 
+# 2. Buttons
 
-## 3. But it doesn't do anything
+```elm
+main : Html ()
+main =
+    div []
+        [ button [ onClick () ] [ text "Inc" ]
+        , button [ onClick () ] [ text "Dec" ]
+    ]
 
-Elm can render `Html`, `Svg` or a `Program`:
+```
+But, what is `onClick`?
+```elm
+onClick : msg -> Attribute msg
+```
 
-``` elm
+------------------------------------------------------------
+
+# Events and messages
+![](images/beginnerprogram.svg)
+
+-------------------------------------------------------
+# Programs
+
+Elm allows `main` to be: `Html`, `Svg` or a *Program*:
+
+```elm
 type Program flags model msg
 ```
 
@@ -43,9 +78,10 @@ type Program flags model msg
 - `msg`: messages from the runtime to your app
 - `flags`: data passed to your app on startup
 
-TODO: insert diagram of app/run-time
+------------------------------------------------------
+# Beginner program
 
-We can use `Html.beginnerProgram`:
+elm-lang/html
 
 ```elm
 beginnerProgram
@@ -56,18 +92,36 @@ beginnerProgram
     -> Program Never model msg
 ```
 
-And we need:
-- an initial model: `0 :Int`
-- `view` that renders a model as Html that might generate a (Int) message
-- `update` that combines a (Int) message with a (Int) model to give a new (Int) model
+- initial model, e.g.: `0 :Int`
+- `view` renders a model as Html that might generate (`Int`) messages
+- `update` takes a message and a (`Int`) model; gives a new (`Int`) model
+--------------------------------------------------------
 
+# 3. Beginner program
 ```elm
-onClick : msg -> Attribute msg
+main : Program Never Int Int
+main =
+    beginnerProgram
+        { model = 0
+        , view =
+            \n ->
+                div []
+                    [ button [ onClick 1 ] [ text "Inc" ]
+                    , button [ onClick -1 ] [ text "Dec" ]
+                    , text (toString n)
+                    ]
+        , update = (+)
+        }
+
 ```
+---------------------------------------------------------
+# Inc, Dec and Reset
 
-
-## 4. Inc Dec or Reset
-
+Make view a separate function
+```elm
+view : Model -> Html Msg
+view n = ...
+```
 Use a custom message type:
 
 ```elm
@@ -81,7 +135,30 @@ Define an alias for Model
 ```elm
 type alias Model = Int
 ```
+----------------------------------------------------------
+# 4. Inc, Dec Reset
 
+Define update function:
+```elm
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        Add n ->
+            model + n
+
+        Reset ->
+            0
+```
+```elm
+main : Program Never Model Msg
+main =
+    beginnerProgram
+        { model = 0
+        , view = view
+        , update = update
+        }
+```
+------------------------------------------------------------
 ## 6. Program with Commands
 
 TODO: explain how commands invoke effects
@@ -96,66 +173,26 @@ program
        }
     -> Program Never model msg
 ```
+---------------------------------------------------------------
+## 6. Web Data
 
-## 6. WebData
+![](images/remotedata.svg)
 
-TODO: diagram of remote data life-cycle
+--------------------------------------------------------------------
+# Web data in Elm
 
+krisajenkins/remotedata
 ```elm
 type RemoteData e a
     = NotAsked
     | Loading
     | Failure e
     | Success a
+    
+type alias WebData a = 
+    RemoteData Error a
 ```
-
-Change model to:
-
-```elm
-type alias Model =
-    WebData String
-
-init : ( Model, Cmd Msg )
-init =
-    ( RemoteData.NotAsked
-    , Cmd.none
-    )
-```
-
-### Sending Requests
-
-Starting from the URL:
-
-```elm
-url : String`
-url = "localhost:8000"
-```
-
-we need to get a command `: Cmd Msg` that will send a GET request to the url,
-and return the result in a message of type `Msg`.
-
-Use `getString`.
-
-```elm
-getString : String -> Request String
-```
-
-`Request` is an opaque type representing the request.  So we need another function:
-
-```elm
-send : (Result Error a -> msg) -> Request a -> Cmd msg
-```
-
-The result of an Http request is represented by `Result` (like `Either`):
-
-```elm
-type Result error value
-    = Ok value
-    | Err error
-```
-
-Where `Error` is `Http.Error`:
-
+elm-lang/http
 ```elm
 type Error
     = BadUrl String
@@ -164,16 +201,127 @@ type Error
     | BadStatus (Response String)
     | BadPayload String (Response String)
 ```
+--------------------------------------------------------------------
+Model
 
-To turn a `Result Error String` into a value of our message type we add a
-constructor `Response`:
+```elm
+type alias Model =
+    WebData String
 
+```
+---------------------------------------------------------------------
+# Sending requests with Commands
+
+![](images/program.svg)
+
+------------------------------------------------------------------------
+
+# Program
+Like `beginerProgram`, but with Commands (and subscriptions)
+
+elm-lang/html:
+
+```elm
+program:  
+    { init : (model, Cmd msg)
+    , update : msg -> model -> (model, Cmd msg)
+    , subscriptions : model -> Sub msg
+    , view : model -> Html msg 
+    }
+    -> Program Never model msg
+```
+---------------------------------------------------------------------------
+
+# Init
+
+Returns initial model **and** first command
+```elm
+init : ( Model, Cmd Msg )
+init =
+    ( RemoteData.NotAsked
+    , Cmd.none
+    )
+```
+
+----------------------------------------------------------------------
+
+# Msg
+Two messages:
 ```elm
 type Msg
     = Request
-    | Response (Result Error String)
+    | Response (Result Error String) 
 ```
 
+- `Request` for the button to initiate the request
+- `Resoinse` brings the result
+
+The result of an Http request is represented by `Result`:
+
 ```elm
-  msg = send Response (getString url)
+type Result error value
+    = Ok value
+    | Err error
 ```
+---------------------------------------------------------------------
+# Update
+```elm
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        Request ->
+            ( RemoteData.Loading
+            , send Response (getString url)
+            )
+
+        Response (Ok value) ->
+            ( RemoteData.Success value
+            , Cmd.none
+            )
+
+        Response (Err error) ->
+            ( RemoteData.Failure error
+            , Cmd.none
+            )
+```
+-----------------------------------------------------------------------------
+
+
+
+elm-lang/http:
+
+```elm
+getString : String -> Request String
+```
+Takes the url and gives an HTTP request (that will reuturn `String`) 
+
+```elm
+send : (Result Error a -> msg) -> Request a -> Cmd msg
+```
+Turns a `Request` into a command using a `Msg` constructor
+
+
+--------------------------------------------------------------------------
+
+```elm
+viewModel : Model -> Html Msg
+viewModel webdataStrig =
+    case webdataStrig of
+        RemoteData.NotAsked ->
+            div [] []
+
+        RemoteData.Loading ->
+            div [ style [ ( "background", "yellow" ) ] ]
+                [ text "Loading ..." ]
+
+        RemoteData.Failure err ->
+            div [ style [ ( "color", "red" ) ] ]
+                [ text (toString err) ]
+
+        RemoteData.Success value ->
+            div [ style [ ( "color", "grey" ) ] ]
+                [ text value ]
+
+```
+---
+
