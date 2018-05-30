@@ -7,9 +7,17 @@ import Style exposing (styleSheet)
 
 main : Html msg
 main =
-    layout
-        (Style.styleSheet [])
-        (text "Hello, World!")
+    layout style content
+
+
+style : StyleSheet class variation
+style =
+    Style.styleSheet []
+
+
+content : Element () variation msg
+content =
+    text "Hello, World!"
 
 
 

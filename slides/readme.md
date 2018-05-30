@@ -9,7 +9,9 @@
 # Elm for the web
 
 Mark Skipper
+mark.skipper@featurespace.co.uk
 Featurespace Ltd
+30 May 2018
 
 ---------------------------
 
@@ -331,6 +333,40 @@ viewModel webdataStrig =
                 [ text value ]
 
 ```
+------------------------------
+# Elm Style Elements
+
+- mdgriffith/style-elements
+- Generates HTML *and* CSS
+- Separates layout and content from styling
+
+
+```elm
+main : Html msg
+main =
+    layout
+        (Style.styleSheet [])
+        (text "Hello, World!")
+```
+-------------------------------
+# Separate style and content
+```elm
+main =
+    layout style content
+
+
+style : StyleSheet class variation
+style =
+    Style.styleSheet []
+
+
+content : Element () variation msg
+content =
+    text "Hello, World!"
+
+
+```
+
 ------------------------------
 
 http://elm-lang.org/

@@ -17,7 +17,7 @@ main =
 
 
 type alias Model =
-    Int
+    WebData String
 
 
 type Msg
