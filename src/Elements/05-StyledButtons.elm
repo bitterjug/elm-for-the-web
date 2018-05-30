@@ -9,7 +9,7 @@ import Style.Font exposing (sansSerif, typeface)
 
 main : Html msg
 main =
-    layout style content
+    layout styles content
 
 
 content : Element Class variation msg
@@ -31,8 +31,8 @@ type Class
     | Action
 
 
-style : StyleSheet Class variation
-style =
+styles : StyleSheet Class variation
+styles =
     Style.styleSheet
         [ style Action [ typeface [ sansSerif ] ]
         ]

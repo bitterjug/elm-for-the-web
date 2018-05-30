@@ -7,7 +7,7 @@ import Style exposing (StyleSheet, styleSheet)
 
 main : Html msg
 main =
-    layout style content
+    layout styles content
 
 
 content : Element () variation msg
@@ -24,6 +24,6 @@ content =
         ]
 
 
-style : StyleSheet class variation
-style =
+styles : StyleSheet class variation
+styles =
     Style.styleSheet []

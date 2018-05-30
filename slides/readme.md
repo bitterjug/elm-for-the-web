@@ -170,7 +170,11 @@ main =
         , view = view
         , update = update
         }
+       
 ```
+---------------------------
+Don't forget the debugger
+
 -----------------------------
 ## 6. Program with effects
 
@@ -369,7 +373,13 @@ content =
 
 ------------------------------
 
-http://elm-lang.org/
+- Elm: http://elm-lang.org/
+- Book: https://www.manning.com/books/elm-in-action
+- todo app: https://github.com/evancz/elm-todomvc
+- Single page app: https://github.com/rtfeldman/elm-spa-example
+- Remote Data http://package.elm-lang.org/packages/krisajenkins/remotedata/latest
+- Style elements: http://package.elm-lang.org/packages/mdgriffith/style-elements/latest
+
 
 ---
 ![bg original 130%](images/fpfrontpage.svg)

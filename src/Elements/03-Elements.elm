@@ -1,17 +1,17 @@
 module Elements exposing (main)
 
-import Element exposing (layout, text)
+import Element exposing (Element, button, column, layout, row, text)
 import Html exposing (Html)
-import Style exposing (styleSheet)
+import Style exposing (StyleSheet, styleSheet)
 
 
 main : Html msg
 main =
-    layout style content
+    layout styles content
 
 
-style : StyleSheet class variation
-style =
+styles : StyleSheet class variation
+styles =
     Style.styleSheet []
 
 
