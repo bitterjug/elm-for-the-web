@@ -1,9 +1,15 @@
 <!-- $theme: default -->
-<x-small>
 
+<!-- *page_number: false -->
+
+![bg original 130%](images/fpfrontpage.svg)
+
+---
+<!-- page_number: true -->
 # Elm for the web
 
 Mark Skipper
+Featurespace Ltd
 
 ---------------------------
 
@@ -15,19 +21,23 @@ type alias Html msg =
     Node msg
 ```
 
--------------------------------------------------------
-
+----------------------------
 # Functions to create DOM nodes:
 
 ![](images/html.svg)
+
 elm-lang/html
+<small>
+
+
 ```elm
 div : List (Attribute msg) -> List (Html msg) -> Html msg
 
 text : String -> Html msg
 ```
+</small>
 
-------------------------------------------------------
+---------------------------
 # 1. Hello World
 
 ```elm 
@@ -35,15 +45,17 @@ main : Html msg
 main =
     text "hello world"
 ```
-------------------------------------------------------
+---------------------------
 
 # Buttons
 elm-lang/html
+<small>
 ```elm
 button : List (Attribute msg) -> List (Html msg) -> Html msg
 ```
-------------------------------------------------------
-
+</small>
+  
+------------------------
 # 2. Buttons
 
 ```elm
@@ -55,17 +67,18 @@ main =
     ]
 
 ```
-But, what is `onClick`?
+
+elm-lang/Html.Events
 ```elm
 onClick : msg -> Attribute msg
 ```
 
-------------------------------------------------------------
+----------------------------
 
 # Events and messages
 ![](images/beginnerprogram.svg)
 
--------------------------------------------------------
+----------------------------
 # Programs
 
 Elm allows `main` to be: `Html`, `Svg` or a *Program*:
@@ -78,43 +91,41 @@ type Program flags model msg
 - `msg`: messages from the runtime to your app
 - `flags`: data passed to your app on startup
 
-------------------------------------------------------
+--------------------------
 # Beginner program
 
 elm-lang/html
 
 ```elm
-beginnerProgram
-    : { model : model
-      , view : model -> Html msg
-      , update : msg -> model -> model
-      }
+beginnerProgram:
+    { model : model
+    , view : model -> Html msg
+    , update : msg -> model -> model
+    }
     -> Program Never model msg
 ```
 
 - initial model, e.g.: `0 :Int`
 - `view` renders a model as Html that might generate (`Int`) messages
 - `update` takes a message and a (`Int`) model; gives a new (`Int`) model
---------------------------------------------------------
-
+-------------------------
 # 3. Beginner program
 ```elm
 main : Program Never Int Int
 main =
-    beginnerProgram
-        { model = 0
-        , view =
-            \n ->
-                div []
-                    [ button [ onClick 1 ] [ text "Inc" ]
-                    , button [ onClick -1 ] [ text "Dec" ]
-                    , text (toString n)
-                    ]
-        , update = (+)
-        }
-
+  beginnerProgram
+    { model = 0
+    , view =
+        \n ->
+          div []
+            [ button [ onClick 1 ] [ text "Inc" ]
+            , button [ onClick -1 ] [ text "Dec" ]
+            , text (toString n)
+            ]
+    , update = (+)
+    }
 ```
----------------------------------------------------------
+------------------------------
 # Inc, Dec and Reset
 
 Make view a separate function
@@ -135,7 +146,7 @@ Define an alias for Model
 ```elm
 type alias Model = Int
 ```
-----------------------------------------------------------
+--------------------------
 # 4. Inc, Dec Reset
 
 Define update function:
@@ -158,10 +169,9 @@ main =
         , update = update
         }
 ```
-------------------------------------------------------------
-## 6. Program with Commands
+-----------------------------
+## 6. Program with effects
 
-TODO: explain how commands invoke effects
 
 Upgrade to `Html.Program`:
 ```elm
@@ -173,12 +183,12 @@ program
        }
     -> Program Never model msg
 ```
----------------------------------------------------------------
+------------------------------
 ## 6. Web Data
 
 ![](images/remotedata.svg)
 
---------------------------------------------------------------------
+-----------------------------
 # Web data in Elm
 
 krisajenkins/remotedata
@@ -201,7 +211,7 @@ type Error
     | BadStatus (Response String)
     | BadPayload String (Response String)
 ```
---------------------------------------------------------------------
+---------------------------
 Model
 
 ```elm
@@ -209,12 +219,12 @@ type alias Model =
     WebData String
 
 ```
----------------------------------------------------------------------
+---------------------------
 # Sending requests with Commands
 
 ![](images/program.svg)
 
-------------------------------------------------------------------------
+-----------------------------
 
 # Program
 Like `beginerProgram`, but with Commands (and subscriptions)
@@ -230,7 +240,7 @@ program:
     }
     -> Program Never model msg
 ```
----------------------------------------------------------------------------
+------------------------------
 
 # Init
 
@@ -243,7 +253,7 @@ init =
     )
 ```
 
-----------------------------------------------------------------------
+-----------------------------
 
 # Msg
 Two messages:
@@ -263,7 +273,22 @@ type Result error value
     = Ok value
     | Err error
 ```
----------------------------------------------------------------------
+----------------------------
+# Http requests
+
+elm-lang/http:
+
+```elm
+getString : String -> Request String
+```
+Takes the url and gives an HTTP request (that will reuturn `String`) 
+
+```elm
+send : (Result Error a -> msg) -> Request a -> Cmd msg
+```
+Turns a `Request` into a command using a `Msg` constructor
+
+---------------------------------
 # Update
 ```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -284,24 +309,7 @@ update msg model =
             , Cmd.none
             )
 ```
------------------------------------------------------------------------------
-
-
-
-elm-lang/http:
-
-```elm
-getString : String -> Request String
-```
-Takes the url and gives an HTTP request (that will reuturn `String`) 
-
-```elm
-send : (Result Error a -> msg) -> Request a -> Cmd msg
-```
-Turns a `Request` into a command using a `Msg` constructor
-
-
---------------------------------------------------------------------------
+----------------------------
 
 ```elm
 viewModel : Model -> Html Msg
@@ -323,5 +331,9 @@ viewModel webdataStrig =
                 [ text value ]
 
 ```
----
+------------------------------
 
+http://elm-lang.org/
+
+---
+![bg original 130%](images/fpfrontpage.svg)

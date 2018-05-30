@@ -1,6 +1,6 @@
 module IncDecReset exposing (main)
 
-import Html exposing (Html, beginnerProgram, button, div, text)
+import Html exposing (Html, beginnerProgram, button, div, program, text)
 import Html.Events exposing (onClick)
 
 

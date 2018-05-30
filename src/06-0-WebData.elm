@@ -17,38 +17,29 @@ main =
 
 
 type alias Model =
-    WebData String
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( RemoteData.NotAsked
-    , Cmd.none
-    )
+    Int
 
 
 type Msg
-    = Request
-    | Response (Result Error String)
+    = Add Int
+    | Reset
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Request ->
-            ( model
-            , Cmd.none
-            )
+        Add n ->
+            model + n
 
-        Response result ->
-            ( model
-            , Cmd.none
-            )
+        Reset ->
+            0
 
 
 view : Model -> Html Msg
-view model =
+view n =
     div []
-        [ button [ onClick Request ] [ text "Request" ]
-        , text (toString model)
+        [ button [ onClick (Add 1) ] [ text "Inc" ]
+        , button [ onClick (Add -1) ] [ text "Dec" ]
+        , button [ onClick Reset ] [ text "Reset" ]
+        , text (toString n)
         ]
