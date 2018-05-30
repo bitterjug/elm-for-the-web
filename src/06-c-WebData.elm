@@ -2,14 +2,7 @@ module WebData exposing (main)
 
 -- send the request, case on the result
 
-import Html
-    exposing
-        ( Html
-        , button
-        , div
-        , program
-        , text
-        )
+import Html exposing (Html, button, div, program, text)
 import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
 import Http exposing (Error, getString, send)
@@ -70,8 +63,8 @@ view model =
 
 
 viewModel : Model -> Html Msg
-viewModel webdataStrig =
-    case webdataStrig of
+viewModel webdataString =
+    case webdataString of
         RemoteData.NotAsked ->
             div [] []
 

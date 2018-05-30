@@ -61,7 +61,7 @@ update msg model =
             )
 
 
-view : Model -> Html Int
+view : Model -> Html Msg
 view model =
     div []
         [ button [ onClick Request ] [ text "Request" ]

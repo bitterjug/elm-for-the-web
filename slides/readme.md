@@ -1,6 +1,7 @@
 <!-- $theme: default -->
 
-<!-- *page_number: false -->
+<!-- *page_number: f
+alse -->
 
 ![bg original 130%](images/fpfrontpage.svg)
 
