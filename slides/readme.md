@@ -3,7 +3,6 @@
 <!-- *page_number: f
 alse -->
 
-![bg original 130%](images/fpfrontpage.svg)
 
 ---
 <!-- page_number: true -->
@@ -383,4 +382,3 @@ content =
 
 
 ---
-![bg original 130%](images/fpfrontpage.svg)
